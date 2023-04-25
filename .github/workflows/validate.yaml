@@ -35,6 +35,8 @@ jobs:
           node --trace-warnings
           echo "${{ secrets.DEVHUB_SFDX_AUTH_URL }}" > ./authfile
           sfdx auth:sfdxurl:store -f authfile -a devhub
+          sfdx force:source:manifest:create --manifestname package-full.xml --outputdir manifest --includepackages managed,unlocked --fromorg devhub
+
         shell: bash
 
       - name: "Github Push"
